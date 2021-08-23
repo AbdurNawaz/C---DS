@@ -1,0 +1,227 @@
+\documentclass[journal,12pt,twocolumn]{IEEEtran}
+
+\usepackage{setspace}
+\usepackage{gensymb}
+\singlespacing
+\usepackage[cmex10]{amsmath}
+
+\usepackage{amsthm}
+
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{bm}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}
+
+\usepackage{longtable}
+\usepackage{multirow}
+
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{steinmetz}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{verbatim}
+\usepackage{tfrupee}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{graphicx}
+\usepackage{tkz-euclide}
+\usepackage{float}
+\usetikzlibrary{calc,math}
+\usepackage{listings}
+    \usepackage{color}                                            %%
+    \usepackage{array}                                            %%
+    \usepackage{longtable}                                        %%
+    \usepackage{calc}                                             %%
+    \usepackage{multirow}                                         %%
+    \usepackage{hhline}                                           %%
+    \usepackage{ifthen}                                           %%
+    \usepackage{lscape}     
+\usepackage{multicol}
+\usepackage{chngcntr}
+\usepackage[export]{adjustbox}
+
+\DeclareMathOperator*{\Res}{Res}
+
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\renewcommand\thesectiondis{\arabic{section}}
+\renewcommand\thesubsectiondis{\thesectiondis.\arabic{subsection}}
+\renewcommand\thesubsubsectiondis{\thesubsectiondis.\arabic{subsubsection}}
+
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+\def\inputGnumericTable{}                                 %%
+
+\lstset{
+%language=C,
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+\begin{document}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}[problem]{Definition}
+
+\newcommand{\BEQA}{\begin{eqnarray}}
+\newcommand{\EEQA}{\end{eqnarray}}
+\newcommand{\define}{\stackrel{\triangle}{=}}
+\bibliographystyle{IEEEtran}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\providecommand{\mbf}{\mathbf}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
+\providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
+\providecommand{\rsbrak}[1]{\ensuremath{{}\left.#1\right]}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\lbrak}[1]{\ensuremath{\left(#1\right.}}
+\providecommand{\rbrak}[1]{\ensuremath{\left.#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
+\providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+%\providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+\providecommand{\mean}[1]{E\left[ #1 \right]}
+\providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
+%\providecommand{\hilbert}{\overset{\mathcal{H}}{ \rightleftharpoons}}
+\providecommand{\system}{\overset{\mathcal{H}}{ \longleftrightarrow}}
+	%\newcommand{\solution}[2]{\textbf{Solution:}{#1}}
+\newcommand{\solution}{\noindent \textbf{Solution: }}
+\newcommand{\cosec}{\,\text{cosec}\,}
+\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+\numberwithin{equation}{subsection}
+\makeatletter
+\@addtoreset{figure}{problem}
+\makeatother
+\let\StandardTheFigure\thefigure
+\let\vec\mathbf
+\renewcommand{\thefigure}{\theproblem}
+\def\putbox#1#2#3{\makebox[0in][l]{\makebox[#1][l]{}\raisebox{\baselineskip}[0in][0in]{\raisebox{#2}[0in][0in]{#3}}}}
+     \def\rightbox#1{\makebox[0in][r]{#1}}
+     \def\centbox#1{\makebox[0in]{#1}}
+     \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
+     \def\midbox#1{\raisebox{-0.5\baselineskip}[0in][0in]{#1}}
+\vspace{3cm}
+\title{EE4013 ASSIGNMENT- 1}
+\author{Shaik Abdur Rahman Nawaz - EE18BTECH11052}
+\maketitle
+\newpage
+\bigskip
+\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+Download all codes from 
+\begin{lstlisting}
+https://github.com/AbdurNawaz/EE3025/tree/main/Assignment-1/codes
+\end{lstlisting}
+And Latex-tikz codes from - 
+\begin{lstlisting}
+https://github.com/AbdurNawaz/EE3025/tree/main/Assignment-1/
+\end{lstlisting}
+%
+\section{\textbf{Problem}}
+    
+Consider a matrix \textbf{P} whose only eigenvectors are the multiples of 
+\begin{bmatrix}
+1\\4
+\end{bmatrix}.
+\\
+Consider the following satements.
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{P} does not have an inverse.
+    \item \textbf{P} has a repeated eigenvalue.
+    \item \textbf{P} cannot be diagonalized.
+\end{enumerate}
+
+Which of the following options is correct?
+\begin{enumerate}[label=(\Alph*)]
+    \item only (i) and (iii) are necessarily true.
+    \item only (ii) is necessarily true.
+    \item only (i) and (ii) are necessarily true.
+    \item only (ii) and (iii) are necessarily true.
+\end{enumerate}
+
+\section{\textbf{Solution}}
+We can observe that all the eigenvectors are linearly dependent. \\
+Following are the properties/theorms that we will use,
+\begin{enumerate}
+    \item Eigenvectors from different eigenvalues are linearly independent.
+    \item An n x n matrix is diagonalizable iff there are n linearly independent eigenvectors.
+\end{enumerate}
+
+Sinice all the eigenvectors are linearly dependent, using property (1) we conclude that \textbf{P} has repeated eigenvalues. \\
+Using property (2) we can conclude that \textbf{P} cannot be diagonalized.
+
+Hence (D) is the right answer.
+
+
+% \subsection{\textbf{Proof for Property (1)}}
+% We will solve the proof for 2 wigenvectors, but the proof can be extended for any number of eigenvetors,
+
+% Let $v_{1}$ and $v_{2}$ be two eigenvectors for the matrix \textbf{P} and $\lambda_{1}$, $\lambda_{2}$ be the corresponding eigenvalues. 
+
+% Let us assume that the eigenvectors are linearly independent.
+
+% Taking the linear combination,
+% \begin{equation}
+%     \alpha_{1}v_{1} + \alpha_{2}v_{2} = 0
+% \end{equation}
+% \begin{equation}
+%     \textbf{P}\alpha_{1}v_{1} + \textbf{P}\alpha_{2}v_{2} = 0
+% \end{equation}
+% \begin{equation}
+%     \alpha_{1}\lambda_{1}v_{1} + \alpha_{2}\lambd_{2}v_{2} = 0
+% \end{equation}
+% Now, multiply the original equation by \lambds_{1},
+% \begin{equation}
+    
+% \end{equation}
+
+
+
+
+
+% \subsection{\textbf{Proof for Property (2)}}
+% The main disadvantage of the Butterworth filter is that it achieves the pass band flatness at the expense of a wide transition band as the filter changes from the pass band to the stop band.\\
+% We can fix this by increasing the order, but having a very high order would create numerical instabilities while simulating. So we will stick to the general order 4.
+  
+\subsection{\textbf{Codes and References}}
+
+We implement Gaussian elimination to find the rank of the matrix(stack of all eigenvectors) to check if all the eigenvectors are linearly dependent.
+\\
+\\
+Code implementation to check linear dependency of eigenvectors-
+\begin{lstlisting}
+https://github.com/AbdurNawaz/EE3025/tree/main/Assignment-1/codes/compute_rank.c
+\end{lstlisting}
+
+% Proof of property (1) -
+% \begin{lstlisting}
+% https://math.stackexchange.com/questions/29371/how-to-prove-that-eigenvectors-from-different-eigenvalues-are-linearly-independe
+% \end{lstlisting}
+
+% Proof of property (2) -
+% \begin{lstlisting}
+% https://sharmaeklavya2.github.io/theoremdep/nodes/linear-algebra/eigenvectors/diag-linindep.html
+% \end{lstlisting}
+\end{document}
