@@ -44,6 +44,10 @@ int compute_rank(float A[ROWS][COLS]) {
 
     for(int row=0;row<rank;row++){
 
+        /*if diagonal element is non-zero,
+        make all elements in the column
+        0 except A[row][row].*/
+
         if(A[row][row]){
 
             for(int i=0;i<ROWS;i++){
@@ -56,6 +60,13 @@ int compute_rank(float A[ROWS][COLS]) {
                 }
             }
         }
+
+        /*else swap the row with any other
+        row below it that has a non zero
+        zero element in the same column.*/
+
+        /*if there is non non zero element
+        then just swap with the last row.*/
 
         else{
             bool flag = true;

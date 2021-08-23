@@ -132,11 +132,11 @@ columns=fullflexible
 \renewcommand{\thetable}{\theenumi}
 Download all codes from 
 \begin{lstlisting}
-https://github.com/AbdurNawaz/EE3025/tree/main/Assignment-1/codes
+https://github.com/AbdurNawaz/C-Data-Structures/tree/main/Assignment-1/codes
 \end{lstlisting}
 And Latex-tikz codes from - 
 \begin{lstlisting}
-https://github.com/AbdurNawaz/EE3025/tree/main/Assignment-1/
+https://github.com/AbdurNawaz/C-Data-Structures/tree/main/Assignment-1
 \end{lstlisting}
 %
 \section{\textbf{Problem}}
@@ -205,14 +205,72 @@ Hence (D) is the right answer.
 % The main disadvantage of the Butterworth filter is that it achieves the pass band flatness at the expense of a wide transition band as the filter changes from the pass band to the stop band.\\
 % We can fix this by increasing the order, but having a very high order would create numerical instabilities while simulating. So we will stick to the general order 4.
   
-\subsection{\textbf{Codes and References}}
+\subsection{\textbf{Code Implementation}}
 
-We implement Gaussian elimination to find the rank of the matrix(stack of all eigenvectors) to check if all the eigenvectors are linearly dependent.
+We implement Gaussian elimination to convert the matrix(stack of all eigenvectors) to its row echelon form and find the rank of the matrix to check if all the eigenvectors are linearly independent.
 \\
-\\
-Code implementation to check linear dependency of eigenvectors-
+
+Below is the code implemented to compute rank:
 \begin{lstlisting}
-https://github.com/AbdurNawaz/EE3025/tree/main/Assignment-1/codes/compute_rank.c
+int compute_rank(float A[ROWS][COLS]) {
+
+    int rank = COLS;
+
+    for(int row=0;row<rank;row++){
+
+        /*if diagonal element is non-zero,
+        make all elements in the column
+        0 except A[row][row].*/
+
+        if(A[row][row]){
+
+            for(int i=0;i<ROWS;i++){
+
+                if(i!=row){
+                    float temp = A[i][row]/A[row][row];
+
+                    for(int j=0;j<rank;j++)
+                        A[i][j] -= temp*A[row][j];
+                }
+            }
+        }
+
+        /*else swap the row with any other
+        row below it that has a non zero
+        zero element in the same column.*/
+
+        /*if there is non non zero element
+        then just swap with the last row.*/
+
+        else{
+            bool flag = true;
+
+            for(int i=row+1;i<ROWS;i++){
+                if(A[i][row]){
+                    flag = false;
+                    swap(A, row, i, rank);
+                    break;
+                }
+            }
+
+            if(flag){
+                rank--;
+
+                for(int i=0;i<ROWS;i++)
+                    A[i][row] = A[i][rank];
+            }
+
+            row--;
+        }
+    }
+
+    return rank;
+}
+\end{lstlisting}
+
+The complete code can be found at - 
+\begin{lstlisting}
+https://github.com/AbdurNawaz/C-Data-Structures/blob/main/Assignment-1/codes/ee18btech11052.c
 \end{lstlisting}
 
 % Proof of property (1) -
