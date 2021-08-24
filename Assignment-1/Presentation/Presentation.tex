@@ -1,0 +1,267 @@
+
+\documentclass{beamer}
+
+\usetheme{Copenhagen}
+\usepackage[normalem]{ulem}
+\title{Assignment 1}
+\subtitle{EE4013 - C \& Data Structures}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+\author{
+S.Abdur Rahman Nawaz -  \
+\texttt{EE18BTECH11052}
+}
+\institute{IIT HYDERABAD}
+\date{August 25, 2021}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+\section{Problem Statement}
+
+\begin{frame}[fragile]
+    
+\textbf{Q:} Consider a matrix \textbf{P} whose only eigenvectors are the multiples of 
+\begin{bmatrix}
+1\\4
+\end{bmatrix}.
+\\
+Consider the following satements.
+\begin{enumerate}[i]
+    \item \textbf{P} does not have an inverse.
+    \item \textbf{P} has a repeated eigenvalue.
+    \item \textbf{P} cannot be diagonalized.
+\end{enumerate}
+
+Which of the following options is correct?
+\begin{enumerate}[A]
+    \item only (i) and (iii) are necessarily true.
+    \item only (ii) is necessarily true.
+    \item only (i) and (ii) are necessarily true.
+    \item only (ii) and (iii) are necessarily true.
+\end{enumerate}
+\end{frame}
+
+\section{Solution}
+
+\begin{frame}{Solution}
+We can observe that all the eigenvectors are linearly dependent.
+\\
+\\
+Following are the properties/theorms that we will use,
+\begin{enumerate}
+    \item Eigenvectors from different eigenvalues are linearly independent.
+    \item An n x n matrix is diagonalizable iff there are n linearly independent eigenvectors.
+\end{enumerate}
+
+Sinice all the eigenvectors are linearly dependent, using property (1) we conclude that \textbf{P} has repeated eigenvalues. \\
+Using property (2) we can conclude that \textbf{P} cannot be diagonalized.
+
+Hence (D) is the right answer.
+
+\end{frame}
+\begin{frame}
+
+We use Gaussian Elimination to find if the eigenvectors are linearly independent.
+\begin{itemize}
+    \item First stack all the eigenvectors to form a matrix.
+    \item Apply Gaussian elimination to convert the matrix into its row echelon form.
+    \item While converting to the row echelon form, we can keep track of the rank.
+\end{itemize}
+\end{frame}
+
+\section{Gaussian Elimination Algorithm}
+\begin{frame}
+    \textbf{Algorithm for Gaussian Elimination: }
+    \begin{enumerate}
+        \item Let the input matrix be A[ROWS][COLS]. Initialize rank as the total number of columns.
+        \vspace{5}
+        \item For each row, do the following, 
+        \vspace{4}
+        \begin{enumerate}[I]
+            \item if A[row][row] is non zero, make all the elements of the current column as zero except A[row][row] by applying the appropriate transformations.
+            \vspace{4}
+            \item if A[row][row] is zero, two cases arise,
+            \vspace{4}
+            \begin{enumerate}[i]
+                    \item If there is any row below it with non zero element in the same column, the swap the rows.
+                    \vspace{4}
+                    \item if all the elements below in the current columns are zero, then swap the current column with the last column and reduce the rank by 1.
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+\textbf{Example: }
+let the matrix A be :
+\begin{equation}
+    \begin{bmatrix}
+        2 & 1 & -3 & 4\\
+        5 & 1 & -3 & -2\\
+        3 & 1 & -3 & 0
+    \end{bmatrix}
+\end{equation}
+
+
+\textbf{Step 1: }Since A[0][0] is non zero, we make all the entries in the current column as 0 by performing the transformations,\\ $R_{2} = R_{2} - 2.5R_{1}$ \& $R_{3} = R_{3} - 1.5R_{1}$.\\
+Matrix A after step 1:
+\begin{equation}
+     \begin{bmatrix}
+    2 & 1 & -3 & 4\\
+    0 & -1.5 & 4.5 & -12\\
+    0 & -0.5 & 1.5 & -6
+    \end{bmatrix}  
+\end{equation}
+
+\end{frame}
+
+\begin{frame}
+
+\textbf{Step 2:} Since A[1][1] is non-zero, we make all the entries in the current column as 0 by performing the transformations,\\ $R_{1} = R_{1} + (2/3)R_{2}$ \& $R_{3} = R_{3} - (1/3)R_{2}$.\\
+\vspace{10}
+Matrix A after step 2:
+\begin{equation}
+     \begin{bmatrix}
+    2 & 0 & 0 & -4\\
+    0 & -1.5 & 4.5 & -12\\
+    0 & 0 & 0 & -2
+    \end{bmatrix}  
+\end{equation}
+
+\end{frame}
+
+\begin{frame}
+
+\textbf{Step 3:} Since A[2][2] is zero and there is no rows remaining below, we remove the current column, by copying the last column here and reduce the rank by 1. And then process this row again.\\
+\vspace{10}
+Matrix A after step 3:
+\begin{equation}
+     \begin{bmatrix}
+    2 & 0 & -4 & -4\\
+    0 & -1.5 & -12 & -12\\
+    0 & 0 & -2 & -2
+    \end{bmatrix}  
+\end{equation}
+
+\end{frame}
+
+\begin{frame}
+
+\textbf{Step 4:} Since A[2][2] is non zero  now, we make all the entries in the current column as 0 by performing the transformations,\\ $R_{1} = R_{1} - 2R_{3}$ \& $R_{2} = R_{2} - 6R_{3}$.\\
+\vspace{10}
+Matrix A after step 4:
+\begin{equation}
+     \begin{bmatrix}
+    2 & 0 & 0 & -4\\
+    0 & -1.5 & 0 & -12\\
+    0 & 0 & -2 & -2
+    \end{bmatrix}  
+\end{equation}
+
+Hence the rank is 3 i.e, there are 3 linearly independent columns in the given matrix.
+\end{frame}
+
+\section{Proofs}
+\begin{frame}
+\textbf{Proof for Property (1):}
+\begin{itemize}
+    \item Eigenvectors from different eigenvalues are linearly independent.
+\end{itemize}
+\vspace{10}
+We will solve the proof for 2 eigenvectors, but the proof can be extended for any number of eigenvetors.
+\vspace{10}
+
+Let $v_{1}$ and $v_{2}$ be two eigenvectors for the matrix \textbf{P} and $\lambda_{1}$, $\lambda_{2}$ be the corresponding distinct eigenvalues.
+
+
+\end{frame}
+
+\begin{frame}
+Taking the linear combination,
+\begin{equation}
+    \alpha_{1}v_{1} + \alpha_{2}v_{2} = 0
+\end{equation}
+We need to show that $\alpha_{1} = \alpha_{2} = 0$\\
+Multiply both sides with \textbf{P} to equation (1)
+\begin{equation}
+    \alpha_{1}\textbf{P}v_{1} + \alpha_{2}\textbf{P}v_{2} = 0
+\end{equation}
+\begin{equation}
+    \alpha_{1}\lambda_{1}v_{1} + \alpha_{2}\lambda_{2}v_{2} = 0
+\end{equation}
+Now, multiply equation (1) with \lambda_{1},\\
+\begin{equation}
+    \lambda_{1}\alpha_{1}v_{1} + \lambda_{1}\alpha_{2}v_{2} = 0
+\end{equation}
+Subtract (4) from (3),
+\begin{equation}
+    \alpha_{2}(\lambda_{2} - \lambda_{1})v_{2} = 0
+\end{equation}
+\end{frame}
+
+
+\begin{frame}
+Since $\lambda_{2} - \lambda_{1} \neq 0$, and since $v_{2} \neq 0$ (because $v_{2}$ is an eigenvector), then $\alpha_{2} = 0$.\\ 
+\vspace{10}
+Using this on the original linear combination $\alpha_{1}v_{1} + \alpha_{2}v_{2} = 0$, we conclude that $\alpha_{1} = 0$ as well (since $v_{1} \neq 0$).
+
+\vspace{10}
+
+So $v_{1}$ and $v_{2}$ are linearly independent.
+\end{frame}
+
+\begin{frame}
+\textbf{Proof for Property 2:}
+\begin{itemize}
+    \item An n x n matrix is diagonalizable iff there are n linearly independent eigenvectors.
+\end{itemize}
+
+Let P be a matrix and $P^{-1}$ exists.
+\begin{equation}
+    \leftrightarrow \exists Q, QP = PQ = I
+\end{equation}
+\begin{equation}
+    \leftrightarrow \exists Q, P^{T}Q^{T} = Q^{T}P^{T} = I
+\end{equation}
+\begin{equation}
+    \leftrightarrow (P^{T})^{-1} exists
+\end{equation}
+\begin{equation}
+    \leftrightarrow rank(P^{T}) = n
+\end{equation}
+\vspace{10}
+$\leftrightarrow$ Rows of $P^{T}$ are linearly independent\\
+
+$\leftrightarrow$ Columns of P are linearly independent
+
+\end{frame}
+
+\begin{frame}
+    ($\exists P$, $\exists$ diagonal D, $AP = PD$) \\
+    \hspace{60}$\leftrightarrow$ columns of P are eigenvectors of $A$.\\
+    \vspace{10}
+    If there are $n$ linearly independent eigenvectors, make them columns of $P$. Then $AP = PD$ ($D$ is diagonal) and $P^{-1}$ exists, so $D = P^{-1}AP$. Therefore, A is diagonalizable.\\
+    \vspace{10}
+    If $A$ is diagonalizable, there is $P$ such that $P^{-1}$ exists and $AP = PD$ ($D$ is diagonal). Therefore columns of $P$ are linearly independent and they are eigenvectors of A. Therefore, A is diagonalizable.
+\end{frame}
+\section{Appendix}
+\begin{frame}{Appendix}
+    \begin{itemize}
+        \item{C implementation for Gaussian Elimination Algorithm can be found 
+        \href{https://github.com/AbdurNawaz/C-Data-Structures/tree/main/Assignment-1/codes/ee18btech11052.c}{\uline{here}}.}
+    \end{itemize}
+    
+\end{frame}
+\end{document}
+
